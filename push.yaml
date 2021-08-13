@@ -1,0 +1,19 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+      - gc/test-action-v2
+
+jobs:
+  hugo-deploy-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: hugo-deploy-gh-pages
+      uses: ContainerSolutions/gh-actions-hugo-deploy-gh-pages@master
+      env:
+        GIT_DEPLOY_KEY: ${{ secrets.hugokey }}
+        HUGO_VERSION: "0.71.0"
+        GITHUB_ACTOR: ianmiell
